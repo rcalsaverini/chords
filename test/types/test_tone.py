@@ -2,10 +2,6 @@ from chords.types.note import Note
 from chords.types.tone import Tone
 from chords.types.letter import A, B, F, G
 from chords.types.accident import FLAT, SHARP, NATURAL
-import pytest
-from typing import List, Tuple
-
-STR_ACCIDENT = ["𝄫", "♭", "♮", "♯", "𝄪"]
 
 
 def test_letter_to_str():

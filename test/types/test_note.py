@@ -4,8 +4,6 @@ from chords.types.accident import FLAT, SHARP, NATURAL
 import pytest
 from typing import List, Tuple
 
-STR_ACCIDENT = ["𝄫", "♭", "♮", "♯", "𝄪"]
-
 
 @pytest.fixture
 def notes():
