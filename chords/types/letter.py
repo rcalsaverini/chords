@@ -2,6 +2,7 @@ from enum import Enum, unique
 
 STR_LETTERS = "A_BC_D_EF_G_"
 
+
 @unique
 class Letter(Enum):
     A = 0
@@ -15,9 +16,23 @@ class Letter(Enum):
     def __repr__(self: "Letter"):
         return f"<Letter: {self.name}>"
 
+    @property
+    def symbol(self: "Letter"):
+        return self.name
+
     @classmethod
-    def from_letter(cls, letter: str) -> "Letter":
+    def from_str(cls, letter: str) -> "Letter":
         return Letter(STR_LETTERS.index(letter))
+
+    def to_str(self: "Letter") -> str:
+        return self.name
+
+    @classmethod
+    def from_int(cls, integer: int) -> "Letter":
+        return Letter(integer)
+
+    def to_int(self) -> int:
+        return self.value
 
 
 A = Letter.A
@@ -27,4 +42,3 @@ D = Letter.D
 E = Letter.E
 F = Letter.F
 G = Letter.G
-
