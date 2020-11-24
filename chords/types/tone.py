@@ -4,7 +4,7 @@ from .letter import Letter
 from dataclasses import dataclass
 from re import compile
 
-TONE_PATTERN = compile("^([A-G])(𝄫|♭|♮|♯|𝄪|b|#)?(\d+)$")
+TONE_PATTERN = compile("^([A-G])(𝄫|♭|♮|♯|𝄪|b|#)?(\\d+)$")
 
 
 @dataclass
@@ -29,5 +29,8 @@ class Tone:
             raise ValueError(f"String does not match pattern {TONE_PATTERN}")
         else:
             letter, accident, octave = matching.groups()
-            note = Note(Letter.from_str(letter), Accident.from_str(accident))
+            note = Note(
+                Letter.from_str(letter),
+                Accident.from_str(accident if accident is not None else "♮"),
+            )
             return Tone(note, int(octave))
