@@ -1,4 +1,4 @@
-from chords.types.note import Note
+from chords.types.note import Note, note_from_int, note_from_str
 from chords.types.letter import A, B, F, G
 from chords.types.accident import FLAT, SHARP, NATURAL
 import pytest
@@ -27,12 +27,12 @@ def test_letter_to_int(notes: List[Tuple[Note, str, int]]):
 
 def test_from_str(notes: List[Tuple[Note, str, int]]):
     for note, symbol, _ in notes:
-        assert Note.from_str(symbol) == note
+        assert note_from_str(symbol) == note
 
-    assert Note.from_str("B#") == Note(B, SHARP)
-    assert Note.from_str("Fb") == Note(F, FLAT)
+    assert note_from_str("B#") == Note(B, SHARP)
+    assert note_from_str("Fb") == Note(F, FLAT)
 
 
 def test_from_int(notes: List[Tuple[Note, str, int]]):
     for note, _, number in notes:
-        assert Note.from_int(number) == note.to_sharp()
+        assert note_from_int(number) == note.to_sharp()

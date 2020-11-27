@@ -1,4 +1,4 @@
-from chords.types.letter import Letter, A, B, C, D, E, F, G
+from chords.types.letter import letter_from_str, letter_from_int, A, B, C, D, E, F, G
 
 
 def test_letter_to_str():
@@ -22,20 +22,20 @@ def test_letter_to_int():
 
 
 def test_from_str():
-    assert Letter.from_str("A") == A
-    assert Letter.from_str("B") == B
-    assert Letter.from_str("C") == C
-    assert Letter.from_str("D") == D
-    assert Letter.from_str("E") == E
-    assert Letter.from_str("F") == F
-    assert Letter.from_str("G") == G
+    assert letter_from_str("A") == A
+    assert letter_from_str("B") == B
+    assert letter_from_str("C") == C
+    assert letter_from_str("D") == D
+    assert letter_from_str("E") == E
+    assert letter_from_str("F") == F
+    assert letter_from_str("G") == G
 
 
 def test_from_int():
-    assert Letter.from_int(0) == A
-    assert Letter.from_int(2) == B
-    assert Letter.from_int(3) == C
-    assert Letter.from_int(5) == D
-    assert Letter.from_int(7) == E
-    assert Letter.from_int(8) == F
-    assert Letter.from_int(10) == G
+    assert letter_from_int(0) == A
+    assert letter_from_int(2) == B
+    assert letter_from_int(3) == C
+    assert letter_from_int(5) == D
+    assert letter_from_int(7) == E
+    assert letter_from_int(8) == F
+    assert letter_from_int(10) == G

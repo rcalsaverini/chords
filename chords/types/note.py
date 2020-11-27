@@ -1,5 +1,5 @@
-from .letter import Letter
-from .accident import Accident, NATURAL
+from .letter import Letter, letter_from_str
+from .accident import Accident, accident_from_str, NATURAL
 from dataclasses import dataclass
 
 
@@ -10,7 +10,6 @@ class Note:
 
     @property
     def symbol(self) -> str:
-
         return (
             f"{self.letter.symbol}"
             if self.accident == NATURAL
@@ -20,31 +19,31 @@ class Note:
     def __repr__(self: "Note"):
         return f"<Note: {self.symbol}>"
 
-    @classmethod
-    def from_str(cls, note: str) -> "Note":
-        if len(note) == 1:
-            return Note(Letter.from_str(note), NATURAL)
-        elif len(note) == 2:
-            letter = note[0]
-            accident = note[1]
-            return Note(Letter.from_str(letter), Accident.from_str(accident))
-        else:
-            raise ValueError("Note symbols are expected to have 2 characters.")
-
     def to_str(self: "Note") -> str:
         return self.symbol
-
-    @classmethod
-    def from_int(cls, integer: int) -> "Note":
-        """
-        Get Note from integer. Fall back to sharps only.
-        """
-        letter = "AABCCDDEFFGG"[integer % 12]
-        accident = "♮♯♮♮♯♮♯♮♮♯♮♯"[integer % 12]
-        return Note(Letter.from_str(letter), Accident.from_str(accident))
 
     def to_int(self) -> int:
         return self.letter.to_int() + self.accident.to_int()
 
     def to_sharp(self: "Note") -> "Note":
-        return Note.from_int(self.to_int())
+        return note_from_int(self.to_int())
+
+
+def note_from_str(note: str) -> Note:
+    if len(note) == 1:
+        return Note(letter_from_str(note), NATURAL)
+    elif len(note) == 2:
+        letter = note[0]
+        accident = note[1]
+        return Note(letter_from_str(letter), accident_from_str(accident))
+    else:
+        raise ValueError("Note symbols are expected to have 2 characters.")
+
+
+def note_from_int(integer: int) -> Note:
+    """
+    Get Note from integer. Fall back to sharps only.
+    """
+    letter = "AABCCDDEFFGG"[integer % 12]
+    accident = "♮♯♮♮♯♮♯♮♮♯♮♯"[integer % 12]
+    return Note(letter_from_str(letter), accident_from_str(accident))

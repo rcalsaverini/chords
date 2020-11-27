@@ -1,6 +1,6 @@
-from .note import Note
-from .accident import Accident
-from .letter import Letter
+from .note import Note, note_from_int
+from .accident import accident_from_str
+from .letter import letter_from_str
 from dataclasses import dataclass
 from re import compile
 
@@ -18,19 +18,19 @@ class Tone:
     def to_str(self: "Tone") -> str:
         return f"{self.note.to_str()}{self.octave}"
 
-    @classmethod
-    def from_int(cls, integer: int) -> "Tone":
-        return Tone(Note.from_int(integer % 12), integer // 12)
 
-    @classmethod
-    def from_str(cls, string: str) -> "Tone":
-        matching = TONE_PATTERN.match(string)
-        if matching is None:
-            raise ValueError(f"String does not match pattern {TONE_PATTERN}")
-        else:
-            letter, accident, octave = matching.groups()
-            note = Note(
-                Letter.from_str(letter),
-                Accident.from_str(accident if accident is not None else "♮"),
-            )
-            return Tone(note, int(octave))
+def tone_from_int(integer: int) -> Tone:
+    return Tone(note_from_int(integer % 12), integer // 12)
+
+
+def tone_from_str(string: str) -> Tone:
+    matching = TONE_PATTERN.match(string)
+    if matching is None:
+        raise ValueError(f"String does not match pattern {TONE_PATTERN}")
+    else:
+        letter, accident, octave = matching.groups()
+        note = Note(
+            letter_from_str(letter),
+            accident_from_str(accident if accident is not None else "♮"),
+        )
+        return Tone(note, int(octave))

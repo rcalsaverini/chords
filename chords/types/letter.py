@@ -20,16 +20,8 @@ class Letter(Enum):
     def symbol(self: "Letter"):
         return self.name
 
-    @classmethod
-    def from_str(cls, letter: str) -> "Letter":
-        return Letter(STR_LETTERS.index(letter))
-
     def to_str(self: "Letter") -> str:
         return self.name
-
-    @classmethod
-    def from_int(cls, integer: int) -> "Letter":
-        return Letter(integer)
 
     def to_int(self) -> int:
         return self.value
@@ -42,3 +34,11 @@ D = Letter.D
 E = Letter.E
 F = Letter.F
 G = Letter.G
+
+
+def letter_from_str(letter: str) -> Letter:
+    return Letter(STR_LETTERS.index(letter))
+
+
+def letter_from_int(integer: int) -> Letter:
+    return Letter(integer)

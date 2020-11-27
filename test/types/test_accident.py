@@ -1,5 +1,6 @@
 from chords.types.accident import (
-    Accident,
+    accident_from_int,
+    accident_from_str,
     DOUBLE_FLAT,
     FLAT,
     NATURAL,
@@ -33,18 +34,18 @@ def test_accident_to_int():
 
 
 def test_from_str():
-    assert Accident.from_str("𝄫") == DOUBLE_FLAT
-    assert Accident.from_str("♭") == FLAT
-    assert Accident.from_str("b") == FLAT
-    assert Accident.from_str("♮") == NATURAL
-    assert Accident.from_str("♯") == SHARP
-    assert Accident.from_str("#") == SHARP
-    assert Accident.from_str("𝄪") == DOUBLE_SHARP
+    assert accident_from_str("𝄫") == DOUBLE_FLAT
+    assert accident_from_str("♭") == FLAT
+    assert accident_from_str("b") == FLAT
+    assert accident_from_str("♮") == NATURAL
+    assert accident_from_str("♯") == SHARP
+    assert accident_from_str("#") == SHARP
+    assert accident_from_str("𝄪") == DOUBLE_SHARP
 
 
 def test_from_int():
-    assert Accident.from_int(-2) == DOUBLE_FLAT
-    assert Accident.from_int(-1) == FLAT
-    assert Accident.from_int(0) == NATURAL
-    assert Accident.from_int(1) == SHARP
-    assert Accident.from_int(2) == DOUBLE_SHARP
+    assert accident_from_int(-2) == DOUBLE_FLAT
+    assert accident_from_int(-1) == FLAT
+    assert accident_from_int(0) == NATURAL
+    assert accident_from_int(1) == SHARP
+    assert accident_from_int(2) == DOUBLE_SHARP

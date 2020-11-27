@@ -1,6 +1,6 @@
 from chords.types.note import Note
-from chords.types.tone import Tone
-from chords.types.letter import A, B, F, G
+from chords.types.tone import Tone, tone_from_str, tone_from_int
+from chords.types.letter import A, B, G
 from chords.types.accident import FLAT, SHARP, NATURAL
 
 
@@ -18,11 +18,11 @@ def test_letter_to_int():
 
 
 def test_from_str():
-    assert Tone.from_str("G#10") == Tone(Note(G, SHARP), 10)
-    assert Tone.from_str("Ab0") == Tone(Note(A, FLAT), 0)
+    assert tone_from_str("G#10") == Tone(Note(G, SHARP), 10)
+    assert tone_from_str("Ab0") == Tone(Note(A, FLAT), 0)
 
 
 def test_from_int():
-    assert Tone.from_int(0) == Tone(Note(A, NATURAL), 0)
-    assert Tone.from_int(-1) == Tone(Note(G, SHARP), -1)
-    assert Tone.from_int(120) == Tone(Note(A, NATURAL), 10)
+    assert tone_from_int(0) == Tone(Note(A, NATURAL), 0)
+    assert tone_from_int(-1) == Tone(Note(G, SHARP), -1)
+    assert tone_from_int(120) == Tone(Note(A, NATURAL), 10)
