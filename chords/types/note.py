@@ -1,5 +1,7 @@
+from typing import Any
 from .letter import Letter, letter_from_str
 from .accident import Accident, accident_from_str, NATURAL
+from .interval import Interval, interval_from_int
 from dataclasses import dataclass
 
 
@@ -27,6 +29,22 @@ class Note:
 
     def to_sharp(self: "Note") -> "Note":
         return note_from_int(self.to_int())
+
+    def __sub__(self: "Note", other: "Note") -> Interval:
+        return interval_from_int(self.to_int() - other.to_int())
+
+    def __add__(self: "Note", other: "Interval") -> "Note":
+        return note_from_int(self.to_int() + other.to_int())
+
+    def __eq__(self, other: object) -> bool:
+        if isinstance(other, Note):
+            normalized_self = self.to_sharp()
+            normalized_other = other.to_sharp()
+            return (normalized_self.letter == normalized_other.letter) and (
+                normalized_self.accident == normalized_other.accident
+            )
+        else:
+            raise ValueError("Not Implemented.")
 
 
 def note_from_str(note: str) -> Note:
