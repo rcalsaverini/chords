@@ -46,6 +46,10 @@ class Note:
         else:
             raise ValueError("Not Implemented.")
 
+    @classmethod
+    def __lshift__(cls, string: str) -> "Note":
+        return note_from_str(string)
+
 
 def note_from_str(note: str) -> Note:
     if len(note) == 1:

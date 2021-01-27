@@ -72,3 +72,10 @@ def test_interval_from_str():
     assert interval_from_str("m7") == MINOR_SEVENTH
     assert interval_from_str("M7") == MAJOR_SEVENTH
     assert interval_from_str("O") == PERFECT_OCTAVE
+
+
+def test___add__():
+    assert MINOR_SECOND + MINOR_SECOND == MAJOR_SECOND
+    assert TRITONE + MINOR_SECOND == PERFECT_FIFTH
+    assert TRITONE + TRITONE == PERFECT_OCTAVE
+    assert MINOR_SIXTH + MAJOR_SEVENTH == PERFECT_FIFTH

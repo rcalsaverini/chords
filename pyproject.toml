@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "chords"
+version = "0.1.0"
+description = "Chords for all!"
+authors = ["Rafael Calsaverini <rafael.calsaverini@nubank.com.br>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
